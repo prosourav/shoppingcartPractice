@@ -35,9 +35,7 @@ function calculate(number,id){
 }
 function calculate2(number,id){
     const currentValue = document.getElementById(id).innerText;
-    console.log(currentValue);
     const currentValueNumber = parseInt(currentValue);
     const totalNumber = currentValueNumber + number;
-  
     document.getElementById(id).innerText = totalNumber;
 }
