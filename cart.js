@@ -3,6 +3,8 @@ calculate("phoneAdd","phoneNum",true);
 calculate("phoneLess","phoneNum",false);
 calculate("caseAdd","caseNum",true);
 calculate("caseLess","caseNum",false);
+remove("cross1","div1");
+remove("cross2","div2");
 function calculate(id, name, isIncrease){
     document.getElementById(id).addEventListener("click",function(){
         const phoneAdd = document.getElementById(name).value;
@@ -25,7 +27,7 @@ function calculate(id, name, isIncrease){
             document.getElementById("cost2").innerText = costN2;
            }
            final();
-           
+
     })
 }
 // const final = document.getElementById("final").innerText;
@@ -45,4 +47,11 @@ document.getElementById("tax").innerText = finalTax;
 const grandTotal = finalTax + taxNumber;
 document.getElementById("totalFinal").innerText = grandTotal;
 }
-
+function remove(id, target){
+const cross = document.getElementById(id);
+cross.addEventListener("click",function(){
+const crossing = document.getElementById(target);
+console.log(crossing);
+crossing.style.display = "none";
+})
+}
