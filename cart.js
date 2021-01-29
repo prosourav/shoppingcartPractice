@@ -1,41 +1,48 @@
 
-const buttonA1 = document.getElementById("btnA1");
-buttonA1.addEventListener("click",function(){
-    calculate(1,'number1');
-    calculate2(1219,"cost1");
-    calculate2(1219,"final"); 
-    calculate2(1219,"totalFinal"); 
-});
-const buttonM1 = document.getElementById("btnM1");
-buttonM1.addEventListener("click",function(event){
-    calculate(-1,'number1');
-    calculate2(-1219,"cost1");
-    calculate2(-1219,"final");
-    calculate2(-1219,"totalFinal");
-});
-const buttonA2 = document.getElementById("btnA2");
-buttonA2.addEventListener("click",function(event){
-    calculate(1,'number2');
-    calculate2(59,"cost2");
-    calculate2(59,"final");
-    calculate2(59,"totalFinal");
-});
-const buttonM2 = document.getElementById("btnM2");
-buttonM2.addEventListener("click",function(event){
-    calculate(-1,'number2');
-    calculate2(-59,"cost2");
-    calculate2(-59,"final");
-    calculate2(-59,"totalFinal");
-});
-function calculate(number,id){
-    const currentValue = document.getElementById(id).value;
-    const currentValueNumber = parseInt(currentValue);
-    const totalNumber = currentValueNumber + number;
-    document.getElementById(id).value = totalNumber;
+calculate("phoneAdd","phoneNum",true);
+calculate("phoneLess","phoneNum",false);
+calculate("caseAdd","caseNum",true);
+calculate("caseLess","caseNum",false);
+function calculate(id, name, isIncrease){
+    document.getElementById(id).addEventListener("click",function(){
+        const phoneAdd = document.getElementById(name).value;
+        const numberOfPhone = parseInt(phoneAdd);
+        let newNumberPhone = numberOfPhone;
+        if(isIncrease == true){
+         newNumberPhone = numberOfPhone + 1;
+        }
+        if(isIncrease == false && newNumberPhone > 0){
+         newNumberPhone = numberOfPhone - 1;
+            }
+        document.getElementById(name).value = newNumberPhone;
+
+        if(name == "phoneNum"){
+         const costN1 = 1219 * newNumberPhone;
+         document.getElementById("cost1").innerText = costN1;
+        }
+        if(name == "caseNum"){
+            const costN2 = 59 * newNumberPhone;
+            document.getElementById("cost2").innerText = costN2;
+           }
+           final();
+           
+    })
 }
-function calculate2(number,id){
-    const currentValue = document.getElementById(id).innerText;
-    const currentValueNumber = parseInt(currentValue);
-    const totalNumber = currentValueNumber + number;
-    document.getElementById(id).innerText = totalNumber;
+// const final = document.getElementById("final").innerText;
+function final(){
+const f1 = document.getElementById("cost1").innerText;
+const valueNum1 = parseInt(f1);
+const f2 = document.getElementById("cost2").innerText;
+const valueNum2 = parseInt(f2);
+const finalValue = valueNum1 + valueNum2;
+document.getElementById("final").innerText = finalValue;
+
+const tax = document.getElementById("final").innerText;
+const taxNumber = parseInt(tax);
+let finalTax = taxNumber * 0.05;
+finalTax = Math.round(finalTax);
+document.getElementById("tax").innerText = finalTax;
+const grandTotal = finalTax + taxNumber;
+document.getElementById("totalFinal").innerText = grandTotal;
 }
+
